@@ -11,6 +11,12 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->group(['prefix' => 'api/v1'], function() use ($router) {
+
+    $router->get('/products', 'ProductController@index');
+    $router->post('/products', 'ProductController@store');
+    $router->put('/products/{id}', 'ProductController@update');
+    $router->delete('/products/{id}', 'ProductController@destroy');
+    $router->get('products/{id}', 'ProductController@show');
+
 });
